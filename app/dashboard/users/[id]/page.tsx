@@ -9,7 +9,7 @@ const UserDetails = async ({
 
   return (
     <div>
-      <h1>showing details for user #{id}</h1>
+      <h1>showingg details for user #{id}</h1>
     </div>
   );
 };
