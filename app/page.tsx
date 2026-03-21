@@ -1,13 +1,9 @@
 import React from 'react'
-import Hello from './components/hello'
 
-function page() {
+function Page() {
   return (
-    <main>
-      <div className='text-5xl underline'>welcome to next.js</div>
-      <Hello/>
-    </main>
+    <div>Page</div>
   )
 }
 
-export default page
+export default Page
