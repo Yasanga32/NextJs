@@ -50,7 +50,7 @@ const EventSchema = new Schema<IEvent>(
 );
 
 // Pre-save hook: slug generation, date parsing, and time formatting
-EventSchema.pre('save', function (next) {
+EventSchema.pre('save', function () {
   // Generate URL-friendly slug if title is modified
   if (this.isModified('title')) {
     this.slug = this.title
@@ -65,7 +65,7 @@ EventSchema.pre('save', function (next) {
   if (this.isModified('date')) {
     const parsedDate = new Date(this.date);
     if (isNaN(parsedDate.getTime())) {
-      return next(new Error('Invalid date format provided.'));
+      throw new Error('Invalid date format provided.');
     }
     this.date = parsedDate.toISOString();
   }
@@ -74,8 +74,6 @@ EventSchema.pre('save', function (next) {
   if (this.isModified('time')) {
     this.time = this.time.trim().toUpperCase();
   }
-
-  next();
 });
 
 const Event = models.Event || model<IEvent>('Event', EventSchema);
